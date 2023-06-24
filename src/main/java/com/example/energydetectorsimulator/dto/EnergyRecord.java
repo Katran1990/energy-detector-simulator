@@ -9,6 +9,6 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class EnergyRecord {
 
-    private double voltage;
+    private int voltage;
     private LocalDateTime dateTime;
 }
