@@ -13,7 +13,7 @@ import org.springframework.context.annotation.Configuration;
 public class RabbitMQConfig {
 
     @Bean
-    public RabbitTemplate rabbitTemplate(final ConnectionFactory connectionFactory) {
+    public RabbitTemplate rabbitTemplate(ConnectionFactory connectionFactory) {
         final var rabbitTemplate = new RabbitTemplate(connectionFactory);
         rabbitTemplate.setMessageConverter(producerJackson2MessageConverter());
         return rabbitTemplate;
@@ -21,9 +21,8 @@ public class RabbitMQConfig {
 
     @Bean
     public Jackson2JsonMessageConverter producerJackson2MessageConverter() {
-        ObjectMapper mapper = new ObjectMapper();
-        mapper.registerModule(new JavaTimeModule());
-        return new Jackson2JsonMessageConverter(mapper);
+        return new Jackson2JsonMessageConverter(new ObjectMapper()
+                .registerModule(new JavaTimeModule()));
     }
 
     @Bean

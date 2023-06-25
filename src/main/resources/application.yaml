@@ -4,3 +4,9 @@ spring:
     port: 5672
     username: guest
     password: guest
+
+energydetector:
+  address: Odesa
+
+server:
+  port: 8081
